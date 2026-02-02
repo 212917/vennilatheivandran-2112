@@ -162,7 +162,16 @@ const ResultPage = () => {
               data-testid="whatsapp-share-button"
             >
               <span className="text-2xl">📱</span>
-              Share on WhatsApp
+              Share My Results
+            </button>
+
+            <button
+              onClick={shareQuizLink}
+              className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 rounded-xl font-bold hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+              data-testid="share-quiz-link-button"
+            >
+              <span className="text-2xl">💕</span>
+              Invite Others to Take Quiz
             </button>
 
             <button
