@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, UploadFile, File, Form
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -6,9 +6,10 @@ import os
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
-from typing import List
+from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
+import base64
 
 
 ROOT_DIR = Path(__file__).parent
@@ -37,10 +38,26 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+class QuizResult(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    score: int
+    result_message: str
+    image_data: Optional[str] = None  # Base64 encoded image
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class QuizResultCreate(BaseModel):
+    name: str
+    score: int
+    result_message: str
+    image_data: Optional[str] = None
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Welcome to Valentine Quiz API 💖"}
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
@@ -65,6 +82,39 @@ async def get_status_checks():
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
     
     return status_checks
+
+# Quiz Routes
+@api_router.post("/quiz/submit", response_model=QuizResult)
+async def submit_quiz(quiz_data: QuizResultCreate):
+    quiz_obj = QuizResult(**quiz_data.model_dump())
+    
+    # Convert to dict and serialize datetime to ISO string for MongoDB
+    doc = quiz_obj.model_dump()
+    doc['timestamp'] = doc['timestamp'].isoformat()
+    
+    await db.quiz_results.insert_one(doc)
+    return quiz_obj
+
+@api_router.get("/quiz/results", response_model=List[QuizResult])
+async def get_quiz_results():
+    # Get latest 50 results
+    results = await db.quiz_results.find({}, {"_id": 0}).sort("timestamp", -1).to_list(50)
+    
+    # Convert ISO string timestamps back to datetime objects
+    for result in results:
+        if isinstance(result['timestamp'], str):
+            result['timestamp'] = datetime.fromisoformat(result['timestamp'])
+    
+    return results
+
+@api_router.get("/quiz/stats")
+async def get_quiz_stats():
+    total = await db.quiz_results.count_documents({})
+    
+    return {
+        "total_quizzes": total,
+        "message": "Valentine Quiz Stats 💖"
+    }
 
 # Include the router in the main app
 app.include_router(api_router)
