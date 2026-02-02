@@ -184,15 +184,15 @@ const ResultPage = () => {
             {showShareOptions && (
               <div className="glass-effect rounded-2xl p-6 space-y-3 fade-in-up">
                 <p className="text-center font-bold text-pink-600 mb-2">
-                  Choose sharing method:
+                  💕 Share the Love with Your Special Someone! 💕
                 </p>
                 <button
                   onClick={shareOnWhatsApp}
                   className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-3 rounded-xl font-bold hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
                   data-testid="whatsapp-share-button"
                 >
-                  <span className="text-xl">📱</span>
-                  Share on WhatsApp
+                  <span className="text-xl">📱💌</span>
+                  Share My Results on WhatsApp
                 </button>
 
                 <button
@@ -200,8 +200,8 @@ const ResultPage = () => {
                   className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-xl font-bold hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
                   data-testid="share-quiz-link-button"
                 >
-                  <span className="text-xl">🔗</span>
-                  Invite Others to Take Quiz
+                  <span className="text-xl">💑🔗</span>
+                  Invite Your Loved Ones to Take Quiz
                 </button>
                 
                 <button
