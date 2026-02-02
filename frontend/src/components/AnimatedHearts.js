@@ -25,7 +25,7 @@ const AnimatedHearts = () => {
         >
           ❤️
         </div>
-      ));
+      ))}
     </div>
   );
 };
