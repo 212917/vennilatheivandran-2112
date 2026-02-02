@@ -158,8 +158,11 @@ const LandingPage = () => {
 
       {/* Ad Space - Bottom */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 pb-8">
-        <div className="ad-container">
-          <span data-testid="bottom-ad">Advertisement Space - 728x90</span>
+        <div className="ad-container" data-testid="bottom-ad">
+          <AdSenseAd 
+            adSlot="2345678901"
+            style={{ minHeight: "90px" }}
+          />
         </div>
       </div>
 
