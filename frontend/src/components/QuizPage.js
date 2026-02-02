@@ -256,7 +256,9 @@ const QuizPage = () => {
   };
 
   const calculateAndSubmit = () => {
-    const score = Object.values(answers).reduce((sum, val) => sum + val, 0);
+    const score = Object.values(answers).reduce((sum, answer) => {
+      return sum + (answer.value || 0);
+    }, 0);
     let resultMessage = "";
     
     if (score <= 3) {
