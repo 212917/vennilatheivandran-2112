@@ -257,16 +257,12 @@ const QuizPage = () => {
         name,
         score,
         resultMessage,
-        imageData: uploadedImage,
       },
     });
   };
 
   const isAnswered = () => {
     const question = questions[currentQuestion];
-    if (question.isImageUpload) {
-      return uploadedImage !== null;
-    }
     return answers[question.id] !== undefined;
   };
 
