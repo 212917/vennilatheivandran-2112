@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AnimatedHearts from "./AnimatedHearts";
+import AdSenseAd from "./AdSenseAd";
 
 const QuizPage = () => {
   const navigate = useNavigate();
