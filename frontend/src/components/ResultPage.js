@@ -42,7 +42,9 @@ const ResultPage = () => {
   };
 
   const shareOnWhatsApp = () => {
-    const text = `🎉 My Valentine Quiz Result! 🎉\n\n👤 Name: ${name}\n❤️ Love Score: ${score}/20\n💖 Result: ${resultMessage}\n\nTake the quiz too! 💕\n${quizUrl}`;
+    const heartEmoji = getScoreEmoji();
+    const photoText = imageData ? "📸 With our beautiful couple photo!" : "";
+    const text = `🎉 My Valentine Quiz Result! 🎉\n\n👤 Name: ${name}\n❤️ Love Score: ${score}/20 ${heartEmoji}\n💖 Result: ${resultMessage}\n${photoText}\n\nTake the quiz too! 💕\n${quizUrl}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, "_blank");
   };
@@ -51,6 +53,115 @@ const ResultPage = () => {
     const text = `💖 I just took this Valentine Quiz and got ${score}/20! 💖\n\nWant to test your love? Take the quiz:\n${quizUrl}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, "_blank");
+  };
+
+  const downloadResultCard = () => {
+    // Create a canvas to generate result card with photo
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Set canvas size
+    canvas.width = 800;
+    canvas.height = 1000;
+    
+    // Background gradient
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, '#ff758c');
+    gradient.addColorStop(1, '#ff7eb3');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Title
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 48px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('💖 Valentine Quiz Results 💖', canvas.width / 2, 80);
+    
+    // White card background
+    ctx.fillStyle = '#ffffff';
+    ctx.roundRect(40, 120, canvas.width - 80, canvas.height - 160, 20);
+    ctx.fill();
+    
+    // Name
+    ctx.fillStyle = '#e60073';
+    ctx.font = 'bold 36px Arial';
+    ctx.fillText(name, canvas.width / 2, 200);
+    
+    // Score
+    ctx.font = 'bold 72px Arial';
+    ctx.fillText(`${score}/20`, canvas.width / 2, 290);
+    
+    // Hearts visualization
+    const heartY = 320;
+    const heartSpacing = 35;
+    const startX = (canvas.width - (20 * heartSpacing)) / 2;
+    ctx.font = '24px Arial';
+    for (let i = 0; i < 20; i++) {
+      ctx.fillText(i < score ? '❤️' : '🤍', startX + (i * heartSpacing), heartY);
+    }
+    
+    // Result message
+    ctx.fillStyle = '#e60073';
+    ctx.font = 'bold 42px Arial';
+    ctx.fillText(resultMessage, canvas.width / 2, 400);
+    
+    // If image exists, draw it
+    if (imageData) {
+      const img = new Image();
+      img.onload = () => {
+        // Draw image in the middle
+        const imgHeight = 300;
+        const imgWidth = 600;
+        const imgX = (canvas.width - imgWidth) / 2;
+        const imgY = 440;
+        
+        ctx.drawImage(img, imgX, imgY, imgWidth, imgHeight);
+        
+        // Add border around image
+        ctx.strokeStyle = '#ff758c';
+        ctx.lineWidth = 4;
+        ctx.roundRect(imgX - 4, imgY - 4, imgWidth + 8, imgHeight + 8, 12);
+        ctx.stroke();
+        
+        // Quiz URL
+        ctx.fillStyle = '#666666';
+        ctx.font = '20px Arial';
+        ctx.fillText('Take the quiz at:', canvas.width / 2, 800);
+        ctx.font = 'bold 24px Arial';
+        ctx.fillStyle = '#e60073';
+        ctx.fillText(quizUrl, canvas.width / 2, 840);
+        
+        // Download the image
+        downloadCanvas(canvas);
+      };
+      img.src = imageData;
+    } else {
+      // No image - add message and download
+      ctx.fillStyle = '#666666';
+      ctx.font = 'italic 28px Arial';
+      ctx.fillText('Share your love story!', canvas.width / 2, 520);
+      
+      // Quiz URL
+      ctx.fillStyle = '#666666';
+      ctx.font = '20px Arial';
+      ctx.fillText('Take the quiz at:', canvas.width / 2, 640);
+      ctx.font = 'bold 24px Arial';
+      ctx.fillStyle = '#e60073';
+      ctx.fillText(quizUrl, canvas.width / 2, 680);
+      
+      downloadCanvas(canvas);
+    }
+  };
+  
+  const downloadCanvas = (canvas) => {
+    canvas.toBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `valentine-quiz-result-${name}.png`;
+      link.click();
+      URL.revokeObjectURL(url);
+    }, 'image/png');
   };
 
   const getScoreEmoji = () => {
