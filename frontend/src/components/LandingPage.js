@@ -88,11 +88,67 @@ const LandingPage = () => {
 
           <button
             onClick={() => navigate("/quiz")}
-            className="bg-white text-pink-600 px-12 py-5 rounded-full text-2xl font-bold hover:scale-110 hover:shadow-2xl transition-all duration-300 transform pulse-heart"
+            className="bg-white text-pink-600 px-12 py-5 rounded-full text-2xl font-bold hover:scale-110 hover:shadow-2xl transition-all duration-300 transform pulse-heart mb-6"
             data-testid="start-quiz-button"
           >
             Start Quiz 💖
           </button>
+
+          {/* Share Section */}
+          <div className="relative">
+            <button
+              onClick={() => setShowShareMenu(!showShareMenu)}
+              className="bg-pink-200/80 backdrop-blur-sm text-pink-700 px-8 py-3 rounded-full text-lg font-semibold hover:bg-pink-300 hover:scale-105 transition-all duration-300"
+              data-testid="share-quiz-button"
+            >
+              📤 Share Quiz with Loved Ones
+            </button>
+
+            {/* Share Menu */}
+            {showShareMenu && (
+              <div className="absolute top-full mt-4 left-1/2 transform -translate-x-1/2 glass-effect rounded-2xl p-6 w-80 z-50 fade-in-up shadow-2xl">
+                <h3 className="text-lg font-bold text-pink-600 mb-4 text-center">
+                  Share the Love! 💕
+                </h3>
+                <div className="space-y-3">
+                  <button
+                    onClick={shareOnWhatsApp}
+                    className="w-full bg-green-500 text-white py-3 rounded-xl font-semibold hover:bg-green-600 transition-all duration-300 flex items-center justify-center gap-2"
+                    data-testid="share-whatsapp"
+                  >
+                    <span className="text-xl">📱</span>
+                    Share on WhatsApp
+                  </button>
+                  
+                  <button
+                    onClick={copyLink}
+                    className="w-full bg-blue-500 text-white py-3 rounded-xl font-semibold hover:bg-blue-600 transition-all duration-300 flex items-center justify-center gap-2"
+                    data-testid="copy-link"
+                  >
+                    <span className="text-xl">{copied ? "✅" : "🔗"}</span>
+                    {copied ? "Link Copied!" : "Copy Link"}
+                  </button>
+                  
+                  <button
+                    onClick={shareViaEmail}
+                    className="w-full bg-purple-500 text-white py-3 rounded-xl font-semibold hover:bg-purple-600 transition-all duration-300 flex items-center justify-center gap-2"
+                    data-testid="share-email"
+                  >
+                    <span className="text-xl">✉️</span>
+                    Share via Email
+                  </button>
+                  
+                  <button
+                    onClick={() => setShowShareMenu(false)}
+                    className="w-full bg-gray-200 text-gray-700 py-2 rounded-xl font-semibold hover:bg-gray-300 transition-all duration-300"
+                    data-testid="close-share-menu"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
