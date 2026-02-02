@@ -203,13 +203,13 @@ const QuizPage = () => {
       ],
     },
     {
-      id: 21,
-      question: "How much do you love her?",
+      id: 20,
+      question: "How much do you love her? 💕",
       options: [
-        { text: "♾️ Infinite ❤️", value: 1 },
-        { text: "❤️", value: 0 },
-        { text: "❤️❤️", value: 0 },
-        { text: "❤️❤️❤️", value: 0 },
+        { text: "♾️ Infinite and beyond ❤️", value: 1 },
+        { text: "💖 More than words", value: 0 },
+        { text: "💗 With all my heart", value: 0 },
+        { text: "💝 Forever and always", value: 0 },
       ],
     },
   ];
