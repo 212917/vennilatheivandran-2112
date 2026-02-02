@@ -142,7 +142,7 @@ const HistoryPage = () => {
                     {result.score}/20
                   </div>
                   <div className="flex justify-center gap-1 mb-2">
-                    {[...Array(20)].map((_, i) => (
+                    {Array.from({ length: 20 }, (_, i) => i).map((i) => (
                       <span
                         key={i}
                         className={`text-xs ${
