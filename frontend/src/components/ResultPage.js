@@ -41,7 +41,13 @@ const ResultPage = () => {
   };
 
   const shareOnWhatsApp = () => {
-    const text = `🎉 My Valentine Quiz Result! 🎉\n\n👤 Name: ${name}\n❤️ Love Score: ${score}/20\n💖 Result: ${resultMessage}\n\nTake the quiz too! 💕`;
+    const text = `🎉 My Valentine Quiz Result! 🎉\n\n👤 Name: ${name}\n❤️ Love Score: ${score}/20\n💖 Result: ${resultMessage}\n\nTake the quiz too! 💕\n${quizUrl}`;
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    window.open(whatsappUrl, "_blank");
+  };
+
+  const shareQuizLink = () => {
+    const text = `💖 I just took this Valentine Quiz and got ${score}/20! 💖\n\nWant to test your love? Take the quiz:\n${quizUrl}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, "_blank");
   };
