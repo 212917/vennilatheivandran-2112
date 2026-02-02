@@ -224,18 +224,6 @@ const QuizPage = () => {
     setAnswers({ ...answers, [questionId]: { index: optionIndex, value: value } });
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setUploadedImage(reader.result);
-        handleAnswer(11, 0, 0); // Image upload question gets 0 points
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   const handleNext = () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
