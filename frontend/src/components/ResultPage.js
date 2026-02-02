@@ -14,7 +14,7 @@ const ResultPage = () => {
   const [saving, setSaving] = useState(false);
   const [showShareOptions, setShowShareOptions] = useState(false);
 
-  const { name, score, resultMessage, imageData } = location.state || {};
+  const { name, score, resultMessage } = location.state || {};
 
   const quizUrl = window.location.origin;
 
