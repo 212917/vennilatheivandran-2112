@@ -369,7 +369,6 @@ const QuizPage = () => {
                 </label>
               ))}
             </div>
-          )}
 
           {/* Navigation Buttons */}
           <div className="flex gap-4 mt-10">
