@@ -268,27 +268,62 @@ const ResultPage = () => {
               </div>
             )}
 
+            {/* Download Result Card with Photo */}
             <button
-              onClick={shareOnWhatsApp}
-              className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-4 rounded-xl font-bold hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
-              data-testid="whatsapp-share-button"
+              onClick={downloadResultCard}
+              className="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-4 rounded-xl font-bold hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+              data-testid="download-result-button"
             >
-              <span className="text-2xl">📱</span>
-              Share My Results
+              <span className="text-2xl">📥</span>
+              Download Result Card {imageData && "with Photo"}
             </button>
 
+            {/* Share Options Button */}
             <button
-              onClick={shareQuizLink}
-              className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 rounded-xl font-bold hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
-              data-testid="share-quiz-link-button"
+              onClick={() => setShowShareOptions(!showShareOptions)}
+              className="w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white py-4 rounded-xl font-bold hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+              data-testid="share-options-button"
             >
               <span className="text-2xl">💕</span>
-              Invite Others to Take Quiz
+              Share Your Results
             </button>
+
+            {/* Share Options Menu */}
+            {showShareOptions && (
+              <div className="glass-effect rounded-2xl p-6 space-y-3 fade-in-up">
+                <p className="text-center font-bold text-pink-600 mb-2">
+                  Choose sharing method:
+                </p>
+                <button
+                  onClick={shareOnWhatsApp}
+                  className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-3 rounded-xl font-bold hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+                  data-testid="whatsapp-share-button"
+                >
+                  <span className="text-xl">📱</span>
+                  Share on WhatsApp
+                </button>
+
+                <button
+                  onClick={shareQuizLink}
+                  className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-xl font-bold hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+                  data-testid="share-quiz-link-button"
+                >
+                  <span className="text-xl">🔗</span>
+                  Invite Others to Take Quiz
+                </button>
+                
+                <button
+                  onClick={() => setShowShareOptions(false)}
+                  className="w-full bg-gray-200 text-gray-700 py-2 rounded-xl font-semibold hover:bg-gray-300 transition-all duration-300"
+                >
+                  Close
+                </button>
+              </div>
+            )}
 
             <button
               onClick={() => navigate("/quiz")}
-              className="w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white py-4 rounded-xl font-bold hover:scale-105 transition-all duration-300"
+              className="w-full bg-white text-pink-600 border-2 border-pink-600 py-4 rounded-xl font-bold hover:scale-105 transition-all duration-300"
               data-testid="retake-quiz-button"
             >
               🔄 Take Quiz Again
