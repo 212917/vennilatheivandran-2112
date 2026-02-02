@@ -415,7 +415,7 @@ const QuizPage = () => {
                 <label
                   key={index}
                   className={`block p-4 rounded-xl cursor-pointer transition-all duration-300 ${
-                    answers[question.id] === option.value
+                    answers[question.id]?.index === index
                       ? "bg-pink-500 text-white scale-105 shadow-lg"
                       : "bg-pink-50 hover:bg-pink-100 hover:scale-102"
                   }`}
@@ -424,9 +424,9 @@ const QuizPage = () => {
                   <input
                     type="radio"
                     name={`question-${question.id}`}
-                    value={option.value}
-                    checked={answers[question.id] === option.value}
-                    onChange={() => handleAnswer(question.id, option.value)}
+                    value={index}
+                    checked={answers[question.id]?.index === index}
+                    onChange={() => handleAnswer(question.id, index, option.value)}
                     className="hidden"
                   />
                   <span className="text-lg">{option.text}</span>
