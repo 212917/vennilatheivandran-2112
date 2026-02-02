@@ -115,7 +115,7 @@ const ResultPage = () => {
                 {score}/20
               </div>
               <div className="flex justify-center gap-1 mb-4">
-                {[...Array(20)].map((_, i) => (
+                {Array.from({ length: 20 }, (_, i) => i).map((i) => (
                   <span key={i} className={i < score ? "text-red-500" : "text-gray-300"}>
                     {i < score ? "❤️" : "🤍"}
                   </span>
