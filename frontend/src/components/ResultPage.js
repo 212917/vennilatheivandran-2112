@@ -248,6 +248,27 @@ const ResultPage = () => {
               <p className="text-gray-700 text-lg">
                 {getScoreMessage()}
               </p>
+              
+              {/* Score Category Breakdown */}
+              <div className="mt-6 bg-pink-50 rounded-xl p-4 text-left">
+                <p className="text-sm font-bold text-pink-600 mb-3 text-center">
+                  Score Categories:
+                </p>
+                <div className="space-y-2 text-sm">
+                  <div className={`flex items-center justify-between p-2 rounded ${score <= 3 ? 'bg-pink-200' : ''}`}>
+                    <span>0-3 ❤️</span>
+                    <span className="font-semibold">Friend zone 😅</span>
+                  </div>
+                  <div className={`flex items-center justify-between p-2 rounded ${score >= 4 && score <= 6 ? 'bg-pink-200' : ''}`}>
+                    <span>4-6 ❤️</span>
+                    <span className="font-semibold">Good love 💕</span>
+                  </div>
+                  <div className={`flex items-center justify-between p-2 rounded ${score >= 7 ? 'bg-pink-200' : ''}`}>
+                    <span>7-20 ❤️</span>
+                    <span className="font-semibold">True love 💖</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
