@@ -1,8 +1,30 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import AnimatedHearts from "./AnimatedHearts";
 
 const LandingPage = () => {
   const navigate = useNavigate();
+  const [showShareMenu, setShowShareMenu] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const quizUrl = window.location.origin;
+
+  const shareOnWhatsApp = () => {
+    const text = `💖 Take this Valentine Quiz and discover your true love score! 💖\n\nFind out if you're in the friend zone or true love!\n\n${quizUrl}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+  };
+
+  const copyLink = () => {
+    navigator.clipboard.writeText(quizUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const shareViaEmail = () => {
+    const subject = "Take this Valentine Quiz! 💖";
+    const body = `I found this amazing Valentine Quiz!\n\nDiscover your true love score by taking this romantic 20-question quiz.\n\nTake the quiz here: ${quizUrl}\n\nLet me know your results! 💕`;
+    window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-400 via-rose-400 to-red-400 relative overflow-hidden">
