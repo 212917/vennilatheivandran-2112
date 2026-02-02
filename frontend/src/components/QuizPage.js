@@ -353,8 +353,11 @@ const QuizPage = () => {
 
       {/* Ad Space */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 mb-6">
-        <div className="ad-container">
-          <span data-testid="quiz-ad">Advertisement Space - 728x90</span>
+        <div className="ad-container" data-testid="quiz-ad">
+          <AdSenseAd 
+            adSlot="3456789012"
+            style={{ minHeight: "90px" }}
+          />
         </div>
       </div>
 
