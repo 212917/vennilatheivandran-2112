@@ -346,53 +346,7 @@ const QuizPage = () => {
             {question.question}
           </h2>
 
-          {question.isImageUpload ? (
-            <div className="space-y-6">
-              <div className="border-4 border-dashed border-pink-300 rounded-2xl p-8 text-center hover:border-pink-500 transition-all duration-300">
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  className="hidden"
-                  id="image-upload"
-                  data-testid="image-upload-input"
-                />
-                <label
-                  htmlFor="image-upload"
-                  className="cursor-pointer block"
-                >
-                  {uploadedImage ? (
-                    <img
-                      src={uploadedImage}
-                      alt="Couple"
-                      className="max-w-full h-64 object-contain mx-auto rounded-xl"
-                      data-testid="uploaded-image-preview"
-                    />
-                  ) : (
-                    <div>
-                      <span className="text-6xl mb-4 block">📸</span>
-                      <p className="text-gray-600 text-lg">
-                        Click to upload your couple photo
-                      </p>
-                    </div>
-                  )}
-                </label>
-              </div>
-              {uploadedImage && (
-                <button
-                  onClick={() => {
-                    setUploadedImage(null);
-                    setAnswers({ ...answers, 11: undefined });
-                  }}
-                  className="w-full bg-gray-200 text-gray-700 py-3 rounded-xl hover:bg-gray-300 transition-all duration-300"
-                  data-testid="remove-image-button"
-                >
-                  Remove Photo
-                </button>
-              )}
-            </div>
-          ) : (
-            <div className="space-y-4">
+          <div className="space-y-4">
               {question.options.map((option, index) => (
                 <label
                   key={index}
