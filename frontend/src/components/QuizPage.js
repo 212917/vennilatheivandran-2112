@@ -235,7 +235,7 @@ const QuizPage = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setUploadedImage(reader.result);
-        handleAnswer(11, 0); // Image upload question gets 0 points
+        handleAnswer(11, 0, 0); // Image upload question gets 0 points
       };
       reader.readAsDataURL(file);
     }
