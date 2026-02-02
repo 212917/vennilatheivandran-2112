@@ -9,7 +9,6 @@ const QuizPage = () => {
   const [answers, setAnswers] = useState({});
   const [name, setName] = useState("");
   const [showNameInput, setShowNameInput] = useState(true);
-  const [uploadedImage, setUploadedImage] = useState(null);
 
   const questions = [
     {
