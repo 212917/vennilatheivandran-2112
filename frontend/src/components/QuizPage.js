@@ -225,8 +225,8 @@ const QuizPage = () => {
     }
   };
 
-  const handleAnswer = (questionId, value) => {
-    setAnswers({ ...answers, [questionId]: value });
+  const handleAnswer = (questionId, optionIndex, value) => {
+    setAnswers({ ...answers, [questionId]: { index: optionIndex, value: value } });
   };
 
   const handleImageUpload = (e) => {
