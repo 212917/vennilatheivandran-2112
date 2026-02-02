@@ -109,18 +109,6 @@ const ResultPage = () => {
               {name}'s Results 🎉
             </h2>
             
-            {/* Uploaded Image */}
-            {imageData && (
-              <div className="mb-8">
-                <img
-                  src={imageData}
-                  alt="Couple"
-                  className="max-w-full h-64 object-contain mx-auto rounded-2xl shadow-lg"
-                  data-testid="result-couple-image"
-                />
-              </div>
-            )}
-
             {/* Score Display */}
             <div className="bg-gradient-to-r from-pink-100 to-rose-100 rounded-2xl p-8 mb-6">
               <p className="text-gray-600 text-lg mb-2">Your Love Score</p>
