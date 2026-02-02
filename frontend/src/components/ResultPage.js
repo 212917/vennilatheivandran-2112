@@ -11,6 +11,7 @@ const ResultPage = () => {
   const navigate = useNavigate();
   const [saved, setSaved] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [showShareOptions, setShowShareOptions] = useState(false);
 
   const { name, score, resultMessage, imageData } = location.state || {};
 
