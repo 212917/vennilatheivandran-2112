@@ -75,8 +75,11 @@ const HistoryPage = () => {
 
       {/* Ad Space */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 mb-6">
-        <div className="ad-container">
-          <span data-testid="history-ad">Advertisement Space - 728x90</span>
+        <div className="ad-container" data-testid="history-ad">
+          <AdSenseAd 
+            adSlot="6789012345"
+            style={{ minHeight: "90px" }}
+          />
         </div>
       </div>
 
