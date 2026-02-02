@@ -126,17 +126,6 @@ const HistoryPage = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
                 data-testid={`result-card-${index}`}
               >
-                {/* Image */}
-                {result.image_data && (
-                  <div className="mb-4">
-                    <img
-                      src={result.image_data}
-                      alt="Couple"
-                      className="w-full h-40 object-cover rounded-xl"
-                    />
-                  </div>
-                )}
-                
                 {/* Name and Score */}
                 <div className="text-center mb-4">
                   <h3 className="text-2xl font-bold text-pink-600 mb-2">
