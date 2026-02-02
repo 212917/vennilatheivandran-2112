@@ -204,8 +204,11 @@ const ResultPage = () => {
 
       {/* Ad Space */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 mb-6">
-        <div className="ad-container">
-          <span data-testid="result-ad">Advertisement Space - 728x90</span>
+        <div className="ad-container" data-testid="result-ad">
+          <AdSenseAd 
+            adSlot="4567890123"
+            style={{ minHeight: "90px" }}
+          />
         </div>
       </div>
 
