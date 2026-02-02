@@ -170,24 +170,14 @@ const ResultPage = () => {
               </div>
             )}
 
-            {/* Download Result Card with Photo */}
-            <button
-              onClick={downloadResultCard}
-              className="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-4 rounded-xl font-bold hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
-              data-testid="download-result-button"
-            >
-              <span className="text-2xl">📥</span>
-              Download Result Card {imageData && "with Photo"}
-            </button>
-
-            {/* Share Options Button */}
+            {/* Share with Loved Ones Button */}
             <button
               onClick={() => setShowShareOptions(!showShareOptions)}
               className="w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white py-4 rounded-xl font-bold hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
               data-testid="share-options-button"
             >
-              <span className="text-2xl">💕</span>
-              Share Your Results
+              <span className="text-2xl">💕👨‍❤️‍👨👩‍❤️‍👩💑</span>
+              Share with Loved Ones
             </button>
 
             {/* Share Options Menu */}
