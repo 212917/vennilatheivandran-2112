@@ -14,6 +14,8 @@ const ResultPage = () => {
 
   const { name, score, resultMessage, imageData } = location.state || {};
 
+  const quizUrl = window.location.origin;
+
   useEffect(() => {
     if (!name || score === undefined) {
       navigate("/");
